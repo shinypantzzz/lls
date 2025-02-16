@@ -5,8 +5,8 @@ import (
 
 	"github.com/fatih/color"
 	"github.com/olekukonko/tablewriter"
+	"github.com/shinypantzzz/lls/internal/types"
 	"github.com/shinypantzzz/lls/internal/util"
-	"github.com/shinypantzzz/lls/types"
 )
 
 var dirStyle = color.New(color.FgBlue)

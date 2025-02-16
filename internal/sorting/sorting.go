@@ -4,7 +4,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/shinypantzzz/lls/types"
+	"github.com/shinypantzzz/lls/internal/types"
 )
 
 type SortFunc func(types.FSItem, types.FSItem) int

@@ -5,7 +5,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/shinypantzzz/lls/types"
+	"github.com/shinypantzzz/lls/internal/types"
 )
 
 func ReadDir(dir string) ([]types.FSItem, int64, error) {
