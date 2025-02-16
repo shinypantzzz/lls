@@ -1,4 +1,4 @@
-package main
+package cmd
 
 import (
 	"fmt"
@@ -10,8 +10,17 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var sortBy string
+
+var sortByMap = map[string]sorting.SortFunc{
+	"size": sorting.BySize,
+	"name": sorting.ByName,
+}
+
+var reverse bool
+
 var rootCmd = &cobra.Command{
-	Use:   "lss [path]",
+	Use:   "lls [path]",
 	Short: "List files and subdirectories with sizes in a directory",
 	Args:  cobra.MaximumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -28,7 +37,12 @@ var rootCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		sorting.SortItems(items)
+		userSortFunc := sortByMap[sortBy]
+		if reverse {
+			userSortFunc = sorting.Reverse(userSortFunc)
+		}
+
+		sorting.SortItems(items, sorting.DirFirst, userSortFunc)
 
 		table := table.BuildTable(items, totalSize, os.Stdout)
 
@@ -36,7 +50,12 @@ var rootCmd = &cobra.Command{
 	},
 }
 
-func main() {
+func init() {
+	rootCmd.Flags().StringVarP(&sortBy, "sort", "s", "size", "column output should be sorted by")
+	rootCmd.Flags().BoolVarP(&reverse, "reverse", "r", false, "sort in reverse order")
+}
+
+func Execute() {
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
 		os.Exit(1)
