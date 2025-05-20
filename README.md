@@ -26,6 +26,7 @@ lls [path]
 
 ### Flags
 
+- `    --dirColor string` : Color to paint directories, can be either one of preset values or string in 'r,g,b' format (default "0,255,0")
 - `-s, --sort string` : Sort output by a specific column (default: `size`).
 - `-r, --reverse` : Sort output in reverse order.
 - `-h, --help` : Display help information.
