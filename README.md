@@ -31,6 +31,10 @@ lls [path]
 - `-r, --reverse` : Sort output in reverse order.
 - `-h, --help` : Display help information.
 
+### Environment
+
+`LLS_DIR_COLOR` - Default color to paint directories, can be either one of preset values or string in 'r,g,b' format
+
 ### Example
 
 ```sh
